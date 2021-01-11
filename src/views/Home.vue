@@ -1,18 +1,61 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-row class="p-5">
+      <b-col cols="12" sm="12" md="6" lg="4" xl="4" class="container p-3" v-for="(item, index) in infoProductStock" :key="index">
+        
+          <b-card id="card"
+            :title="item.name"
+            :img-src="item.image"
+            img-alt="Image"
+            img-top
+            tag="article"
+            style="max-width: 20rem;"
+            class="mb-2"
+          >
+          <b-card-text id="price">
+            ${{item.price}}
+          </b-card-text>
+          <div class="text-center">
+            <button type="button" class="btn btn-success text-center" @click="addCart(item)">Agregar a <font-awesome-icon icon="shopping-cart"></font-awesome-icon></button>
+          </div>
+          </b-card>
+        
+      </b-col>
+    </b-row>
   </div>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+
+  computed: {
+    ...mapGetters(['infoProductStock']),
+  },
+  methods:{
+    ...mapActions(['addCart'])
   }
 }
 </script>
+
+<style>
+  .home{
+    background-image: url('../assets/set-of-cartoon-clouds-vector.jpg');
+    background-size: auto;
+    background-position: center;
+    background-repeat: repeat;
+  }
+
+  #card{
+    border: 4px solid purple;
+  }
+
+  #price{
+    font-size: 25px;
+    color: purple;
+  }
+
+</style>
