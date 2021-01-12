@@ -70,7 +70,7 @@ export default {
   }
   
   sup{
-    padding: 2px 7px;
+    padding: 2px 10px;
     border-radius: 100%;
     margin-left: 5px;
   }

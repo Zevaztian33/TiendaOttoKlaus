@@ -166,11 +166,13 @@ export default new Vuex.Store({
     },
 
     restItem({commit}, item){
-      commit ('mutBackStock', item)
+      commit ('mutBackStock', item);
+      console.log("Se devolvio 1 item al Stock")
     },
 
     deleteItem({commit}, item){
       commit('mutBackAll', item);
+      console.log("Se devolvio toda la fila de productos al Stock")
     }
   }
 })

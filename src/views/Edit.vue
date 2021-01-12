@@ -64,6 +64,7 @@ export default {
                     stock: this.stock,
                     price: this.price,
                     image: this.image,
+                    idDoc: this.id,
                     total: 0
                 };
                 this.$store.dispatch('actualizandoProducto',datos);
