@@ -31,11 +31,11 @@ export default new Vuex.Store({
     },
 
     sendTicket(state){
-      return state.ticket
+      return state.ticket;
     },
 
     sendTotalTicket(state, getters){
-      let prices = getters.sendTicket.map(result => parseFloat(result.price) * result.total)
+      let prices = getters.sendTicket.map(result => result.price * result.total)
       return prices.reduce ((plus, init) => {
         return plus + init;
       },0)
@@ -69,6 +69,29 @@ export default new Vuex.Store({
       }else{
         resultTicket.total = rest.total;
       }
+    },
+
+    mutBackStock(state, item){
+      let rest = state.toys.find(result => result.id == item.id);
+      rest.stock++;
+      --rest.total;
+      state.sellToys--;
+      if(rest.total == 0){
+        let resultTicket = state.ticket.findIndex(ticket => ticket.id == rest.id);
+        state.ticket.splice(resultTicket, 1);
+      }else{
+        let resultTicket = state.ticket.find(ticket => ticket.id == rest.id);
+        resultTicket.total = rest.total;
+      }
+    },
+
+    mutBackAll(state, item){
+      let rest = state.toys.find(result => result.id == item.id);
+      rest.stock += rest.total;
+      state.sellToys -= rest.total;
+      rest.total = 0;
+      let toy = state.ticket.findIndex(rest => rest.id == item.id);
+      state.ticket.splice(toy, 1);
     }
   },
 
@@ -131,6 +154,14 @@ export default new Vuex.Store({
         showConfirmButton: false,
         timer: 1500
       })
+    },
+
+    restItem({commit}, item){
+      commit ('mutBackStock', item)
+    },
+
+    deleteItem({commit}, item){
+      commit('mutBackAll', item);
     }
   }
 })

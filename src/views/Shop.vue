@@ -22,8 +22,8 @@
                         <td>{{item.name}}</td>
                         <td>${{item.price}}</td>
                         <td>{{item.total}}</td>
-                        <td><button type="button" class="btn btn-warning" @click="restarProducto(juegos)"><font-awesome-icon icon="minus"></font-awesome-icon></button></td>
-                        <td><button type="button" class="btn btn-danger" @click="eliminando(juegos)"><font-awesome-icon icon="trash-alt"></font-awesome-icon></button></td>
+                        <td><button type="button" class="btn btn-warning" @click="restItem(item)"><font-awesome-icon icon="minus"></font-awesome-icon></button></td>
+                        <td><button type="button" class="btn btn-danger" @click="deleteItem(item)"><font-awesome-icon icon="trash-alt"></font-awesome-icon></button></td>
                     </tr>
                     </tbody>
                     <tfoot>
@@ -44,13 +44,17 @@
 </template>
 
 <script>
-import {mapGetters, } from 'vuex';
+import {mapActions, mapGetters, } from 'vuex';
 
     export default {
         name: 'Shop',
 
         computed:{
             ...mapGetters(['sendSell', 'sendTicket', 'sendTotalTicket', 'sendTotal'])
+        },
+
+        method: {
+            ...mapActions(['restItem', 'deleteItem'])
         }
     }
 </script>
