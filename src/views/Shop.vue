@@ -4,6 +4,8 @@
             <h2>Tu carrito:</h2>
             <hr>
             <div class="my-5">
+
+                <!-- Carrito de Compra -->
                 <div v-if="sendSell > 0">
                 <table class="table table-striped mt-3 bg-light container text-center">
                     <thead>
@@ -34,6 +36,12 @@
                         </tr>
                     </tfoot>
                     </table>
+                    <div class="text-center">
+                        <button class="btn bg-success text-white">Pagar</button>
+                    </div>
+
+                    <!-- Modal de Pago -->
+
                 </div>
                 <div v-else-if="sendSell <= 0">
                     <div class="alert alert-warning container mt-2" role="alert">No hay productos en el carro...</div>
@@ -44,7 +52,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, } from 'vuex';
+import { mapActions, mapGetters, } from 'vuex';
 
     export default {
         name: 'Shop',
@@ -53,8 +61,10 @@ import {mapActions, mapGetters, } from 'vuex';
             ...mapGetters(['sendSell', 'sendTicket', 'sendTotalTicket', 'sendTotal'])
         },
 
-        method: {
-            ...mapActions(['restItem', 'deleteItem'])
+        methods: {
+            ...mapActions(['restItem', 'deleteItem']),
+
+            
         }
     }
 </script>
@@ -65,6 +75,7 @@ import {mapActions, mapGetters, } from 'vuex';
         background-size: auto;
         background-position: center;
         background-repeat: repeat;
+        height: 80vh;
     }
 
 </style>

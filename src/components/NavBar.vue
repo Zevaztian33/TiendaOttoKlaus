@@ -10,10 +10,11 @@
       
         <b-navbar-nav class="ml-auto">
             <b-nav-item :to="{name: 'Home'}"><font-awesome-icon icon="home"></font-awesome-icon></b-nav-item>
-            <b-nav-item class="text-center" :to="{name: 'Shop'}"><font-awesome-icon icon="shopping-cart"></font-awesome-icon></b-nav-item>
+            
             <b-nav-item v-if="!enterAdmin" :to="{name: 'Login'}">Ingreso</b-nav-item>
             <b-nav-item v-else @click="signOut">Salida</b-nav-item>
             <b-nav-item :to="{name: 'Panel'}">Panel de Control</b-nav-item>
+            <b-nav-item class="text-center" :to="{name: 'Shop'}"><font-awesome-icon icon="shopping-cart"></font-awesome-icon><sup class="bg-warning text-dark">{{sendTotal}}</sup></b-nav-item>
             
         </b-navbar-nav>
       </b-collapse>
@@ -33,7 +34,7 @@ export default {
   name: 'NavBar',
 
   computed: {
-        ...mapGetters(['enterAdmin']),
+        ...mapGetters(['enterAdmin', 'sendTotal']),
 
   },
 
@@ -62,11 +63,15 @@ export default {
   #nav img{
     width: 150px;
   }
+
   #nav {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 25px;
   }
-  .home{
-    font-size: 30px;
+  
+  sup{
+    padding: 2px 7px;
+    border-radius: 100%;
+    margin-left: 5px;
   }
 </style>

@@ -46,13 +46,15 @@ export default {
             name: '',
             stock: '',
             price: '',
-            image: ''
+            image: '',
+            total: 0
         }
     },
+
     computed: {
         ...mapGetters(['infoProduct'])
     },
-
+    
     methods: {
         editProduct(){
             if (this.code && this.name && this.stock >= 0 && this.price > 0 && this.image) {
@@ -62,7 +64,7 @@ export default {
                     stock: this.stock,
                     price: this.price,
                     image: this.image,
-                    idDoc: this.id
+                    total: 0
                 };
                 this.$store.dispatch('actualizandoProducto',datos);
                 Swal.fire({

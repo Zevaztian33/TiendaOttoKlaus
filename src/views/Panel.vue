@@ -91,7 +91,8 @@ export default {
       name: '',
       stock: '',
       price: '',
-      image: ''
+      image: '',
+      total: 0
     }
   },
 
@@ -107,7 +108,9 @@ export default {
           name: this.name,
           stock: this.stock,
           price: this.price,
-          image: this.image
+          image: this.image,
+          total: 0
+        
         };
         this.$store.dispatch('addItem', datos);
         Swal.fire({

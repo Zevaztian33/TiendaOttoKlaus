@@ -59,12 +59,14 @@ export default new Vuex.Store({
     },
 
     mutRestStock(state, item){
-      let rest = state.toys.find(result => result.id == item.id);
+      let rest = state.toys.find(result => result.idDoc == item.idDoc);
+      rest.stock = parseInt(rest.stock);
+      rest.price = parseFloat(rest.price);
       rest.stock--;
       ++rest.total;
       state.sellToys++;
-      let resultTicket = state.ticket.find(ticket => ticket.id == item.id);
-      if (!resultTicket){
+      let resultTicket = state.ticket.find(ticket => ticket.idDoc == item.idDoc);
+      if (resultTicket === undefined){
         state.ticket.push(rest);
       }else{
         resultTicket.total = rest.total;
@@ -72,25 +74,29 @@ export default new Vuex.Store({
     },
 
     mutBackStock(state, item){
-      let rest = state.toys.find(result => result.id == item.id);
+      let rest = state.toys.find(result => result.idDoc == item.idDoc);
+      rest.stock = parseInt(rest.stock);
+      rest.price = parseFloat(rest.price);
       rest.stock++;
       --rest.total;
       state.sellToys--;
       if(rest.total == 0){
-        let resultTicket = state.ticket.findIndex(ticket => ticket.id == rest.id);
+        let resultTicket = state.ticket.findIndex(ticket => ticket.idDoc == rest.idDoc);
         state.ticket.splice(resultTicket, 1);
       }else{
-        let resultTicket = state.ticket.find(ticket => ticket.id == rest.id);
+        let resultTicket = state.ticket.find(ticket => ticket.idDoc == rest.idDoc);
         resultTicket.total = rest.total;
       }
     },
 
     mutBackAll(state, item){
-      let rest = state.toys.find(result => result.id == item.id);
+      let rest = state.toys.find(result => result.idDoc == item.idDoc);
+      rest.stock = parseInt(rest.stock);
+      rest.price = parseFloat(rest.price);
       rest.stock += rest.total;
       state.sellToys -= rest.total;
       rest.total = 0;
-      let toy = state.ticket.findIndex(rest => rest.id == item.id);
+      let toy = state.ticket.findIndex(rest => rest.idDoc == item.idDoc);
       state.ticket.splice(toy, 1);
     }
   },
@@ -110,7 +116,8 @@ export default new Vuex.Store({
             name: element.data().name,
             stock: element.data().stock,
             price: element.data().price,
-            image: element.data().image
+            image: element.data().image,
+            total: element.data().total
           })
         })
         commit('mutProducto', datos);
@@ -124,6 +131,7 @@ export default new Vuex.Store({
         stock: datos.stock,
         price: datos.price,
         image: datos.image,
+        total: 0
       }).then(() => console.log("Producto ingresado correctamente")).catch(error => console.error(error));
     },
 
@@ -140,6 +148,7 @@ export default new Vuex.Store({
         stock: datos.stock,
         price: datos.price,
         image: datos.image,
+        total: 0
       })
         .then(()=> console.log("Datos actualizados"))
         .catch(error => console.error(error));

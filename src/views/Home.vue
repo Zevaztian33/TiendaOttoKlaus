@@ -16,7 +16,7 @@
             ${{item.price}}
           </b-card-text>
           <div class="text-center">
-            <button type="button" class="btn btn-success text-center" @click="addCart(item)">Agregar a <font-awesome-icon icon="shopping-cart"></font-awesome-icon></button>
+            <button type="button" class="btn btn-success text-center" @click="sendCart(item)">Agregar a <font-awesome-icon icon="shopping-cart"></font-awesome-icon></button>
           </div>
           </b-card>
         
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: 'Home',
@@ -35,10 +35,15 @@ export default {
   computed: {
     ...mapGetters(['infoProductStock']),
   },
+
   methods:{
-    ...mapActions(['addCart'])
-  }
+    sendCart(item){
+      this.$store.dispatch('addCart',item);
+      console.log('Producto agregado al carrito')
+    }
+  },
 }
+
 </script>
 
 <style>
