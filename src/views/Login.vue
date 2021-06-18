@@ -6,11 +6,11 @@
                 <form @submit.prevent="loginAdmin">
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" v-model="email">
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" v-model="email" placeholder="s.araos.olguin@gmail.com">
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" v-model="password" id="inputPassword">
+                    <input type="password" class="form-control" v-model="password" id="inputPassword" placeholder="123456">
                 </div>
                 <button type="submit" class="btn btn-success">Ingresar</button>
                 </form>
