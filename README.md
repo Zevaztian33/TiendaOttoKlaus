@@ -1,6 +1,5 @@
 <<<<<<< HEAD
 # prueba_otto_klaus
-https://otto-klaus-2be0c.web.app/
 
 <img src="./src/assets/muestra.png" alt="muestra">
 ## Project setup
