@@ -7,37 +7,39 @@
 
                 <!-- Carrito de Compra -->
                 <div v-if="sendSell > 0">
-                <table class="table table-striped mt-3 bg-light container text-center">
-                    <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Restar 1</th>
-                        <th>Eliminar Fila</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(item,index) in sendTicket" :key="index">
-                        <td>{{item.code}}</td>
-                        <td>{{item.name}}</td>
-                        <td>${{item.price}}</td>
-                        <td>{{item.total}}</td>
-                        <td><button type="button" class="btn btn-warning" @click="restItem(item)"><font-awesome-icon icon="minus"></font-awesome-icon></button></td>
-                        <td><button type="button" class="btn btn-danger" @click="deleteItem(item)"><font-awesome-icon icon="trash-alt"></font-awesome-icon></button></td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                        <th colspan="3" class="text-right">Total Venta: ${{sendTotalTicket}}</th>
-                        <br>
-                        <th>Total Productos: {{sendTotal}}</th>
-                        </tr>
-                    </tfoot>
-                    </table>
-                    <div class="text-center">
-                        <button type="button" class="btn bg-success text-white" data-toggle="modal" data-target="#exampleModal">Pagar</button>
+                    <div class="table-responsive">
+                        <table class="table table-striped mt-3 bg-light container text-center">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Restar 1</th>
+                                <th>Eliminar Fila</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(item,index) in sendTicket" :key="index">
+                                <td>{{item.code}}</td>
+                                <td>{{item.name}}</td>
+                                <td>${{item.price}}</td>
+                                <td>{{item.total}}</td>
+                                <td><button type="button" class="btn btn-warning" @click="restItem(item)"><font-awesome-icon icon="minus"></font-awesome-icon></button></td>
+                                <td><button type="button" class="btn btn-danger" @click="deleteItem(item)"><font-awesome-icon icon="trash-alt"></font-awesome-icon></button></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                <th colspan="3" class="text-right">Total Venta: ${{sendTotalTicket}}</th>
+                                <br>
+                                <th>Total Productos: {{sendTotal}}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="text-center" >
+                        <button type="button" class="btn bg-success text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Pagar</button>
                     </div>
 
                     <!-- Modal de Pago -->
@@ -51,7 +53,7 @@
                                 <div class="modal-body">
                                     <p>Nombre de titular de boleta/factura</p>
                                     <div>
-                                        <b-form-input type="text" ></b-form-input>
+                                        <b-form-input type="text"></b-form-input>
                                         <div class="mt-2"></div>
                                     </div>
                                     <hr>
@@ -80,24 +82,24 @@
                                     <h4 class="text-danger">${{sendTotalTicket}}</h4>
                                     <hr>
                                     <div class="text-center">
-                                        <button type="button" class="btn bg-primary text-white" data-dismiss="modal" @click="buyFinish">Pagar</button>
+                                        <button type="button" class="btn bg-primary text-white" data-bs-dismiss="modal" @click="buyFinish">Pagar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div v-else-if="sendSell <= 0">
                     <div class="alert alert-warning container mt-2" role="alert">No hay productos en el carro...</div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, } from 'vuex';
+// import Swal from 'sweetalert2';
 
     export default {
         name: 'Shop',
@@ -107,11 +109,7 @@ import { mapActions, mapGetters, } from 'vuex';
         },
 
         methods: {
-            ...mapActions(['restItem', 'deleteItem']),
-
-            buyFinish(){
-                this.$router.push({name: 'Home'});
-            }
+            ...mapActions(['restItem', 'deleteItem', 'buyFinish']), 
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <footer class="bg-danger">
-            <div class="d-flex justify-content-around align-items-center container">
+            <div class="d-flex flex-column flex-lg-row justify-content-around align-items-center container">
                 <p class="text-light">Página Creada por Sebastian Araos</p>
                 <router-link class="nav-link" to="/"><img src="../assets/logoOttoKlaus.png" alt="logo"></router-link>
                 <p class="text-light">Portafolio:</p>

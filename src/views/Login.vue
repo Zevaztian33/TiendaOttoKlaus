@@ -1,5 +1,5 @@
 <template>
-    <div class="login">
+    <div class="login" id="login">
         <div class="container py-5">
             <h2>Bienvenido!</h2>
             <hr>

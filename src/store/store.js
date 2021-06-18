@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase';
 import Swal from 'sweetalert2';
+import router from '../router/router';
 
 Vue.use(Vuex)
 
@@ -98,6 +99,11 @@ export default new Vuex.Store({
       rest.total = 0;
       let toy = state.ticket.findIndex(rest => rest.idDoc == item.idDoc);
       state.ticket.splice(toy, 1);
+    },
+
+    mutResetCart(state){
+      state.ticket = [],
+      state.sellToys = 0
     }
   },
 
@@ -173,6 +179,17 @@ export default new Vuex.Store({
     deleteItem({commit}, item){
       commit('mutBackAll', item);
       console.log("Se devolvio toda la fila de productos al Stock")
+    },
+
+    buyFinish({commit}, item){
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Compra exitosa. Dentro de los siguientes días estara llegando su pedido. Muchas gracias por comprar en Otto Klaus',
+        showConfirmButton: true
+      }),
+      commit('mutResetCart', item);
+      router.push({name: 'Home'});
     }
   }
 })

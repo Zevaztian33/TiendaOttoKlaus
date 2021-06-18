@@ -9,8 +9,9 @@
     
     <h2>Stock de juguetes</h2>
       <div class="my-4">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Agregar producto nuevo</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar producto nuevo</button>
       </div>
+      <div class="table-responsive">
       <table class="table table-danger table-striped text-center">
         <thead>
           <tr class="bg-danger text-light">
@@ -33,6 +34,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <div>
             <!-- Modal -->
@@ -67,7 +69,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><font-awesome-icon icon="times"></font-awesome-icon></button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><font-awesome-icon icon="times"></font-awesome-icon></button>
                     <button type="button" v-b-popover.hover.bottom.v-danger="{title:'CUIDADO!', content:'No se pueden ingresar cifras negativas en Stock y Precio, o dejar campos vacios'}" class="btn btn-success" data-dismiss="modal" @click.prevent="addItem">Agregar</button>
                 </div>
                 </div>
