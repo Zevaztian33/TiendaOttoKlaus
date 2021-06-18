@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # prueba_otto_klaus
 https://otto-klaus-2be0c.web.app/
 
@@ -25,7 +24,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
 # TiendaOttoKlaus
 Prueba (Desafío Curso): "Tienda Otto Klaus"
->>>>>>> 391b498e8cced9cd8c2a26d00424a053f5e01082
